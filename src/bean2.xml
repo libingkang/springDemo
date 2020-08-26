@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <!--  注入外部bean(在service层注入dao层的调用,采用的是属性set()方法的形式，在service 层定义一个dao的set方法，
+        在property标签中的name写上对应的dao的属性名称，ref 写上dao层对象的引用) -->
+    <bean id="userService" class="com.xk.spring5.service.UserService">
+        <property name="userDao" ref="userDaoImpl"/>
+    </bean>
+
+    <!--此处要用dao层的实现类，不能是接口-->
+    <bean id="userDaoImpl" class="com.xk.spring5.dao.impl.UserDaoImpl"/>
+
+</beans>

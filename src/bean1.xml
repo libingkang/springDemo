@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="user" class="com.xk.spring5.User">
+    <bean id="user" class="com.xk.spring5.User"/>
 
-    </bean>
 
+    <!--无参构造注入 使用set方法注入-->
     <bean id="book" class="com.xk.spring5.pojo.Book">
-        <property name="name" value="java"></property>
-        <property name="desc" value="java open source"></property>
+        <property name="name" value="java"/>
+        <property name="desc" value="java open source"/>
     </bean>
+
+    <!--使用构造方法注入-->
+    <bean id="person" class="com.xk.spring5.pojo.Person">
+        <constructor-arg name="name" value="xk"/>
+        <constructor-arg name="age" value="21"/>
+    </bean>
+
+
+    <!--命名空间注入值的方式-->
+    <bean id="book1" class="com.xk.spring5.pojo.Book" p:name="C++" p:desc="opeen"/>
+
+    <!-- null值的注入 给一个属性注入一个null  给属性注入一个特殊符号 写入CDATA 中 如：《》-->
+    <bean id="book2" class="com.xk.spring5.pojo.Book">
+        <property name="name" value="java"/>
+        <property name="desc">
+            <value>
+                <![CDATA[<<南京>>]]>
+            </value>
+        </property>
+        <property name="price">
+            <null/>
+        </property>
+    </bean>
+
 </beans>
